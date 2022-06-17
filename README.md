@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 
 ## itemsテーブル
@@ -34,11 +34,6 @@
 ### Association
 - belongs_to :user
 - has_one :purchase
-- belongs_to_active_hash :category_id
-- belongs_to_active_hash :condition_id
-- belongs_to_active_hash :postage_payer_id
-- belongs_to_active_hash :prefecture_id
-- belongs_to_active_hash :shipment_date_id
 
 
 ## purchasesテーブル
@@ -49,7 +44,7 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one :shipping_address
 
 
@@ -63,10 +58,9 @@
 |city                 |string     |null: false                    |
 |address              |string     |null: false                    |
 |building             |string     |                               |
-|phone_number         |integer    |null: false                    |
+|phone_number         |string     |null: false                    |
 |purchase             |references |null: false, foreign_key: true |
 
 
 ### Association
 - belongs_to :purchase
-- belongs_to_active_hash :prefecture_id
