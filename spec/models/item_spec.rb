@@ -27,28 +27,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it "categoryが空だと出品できない" do
-        @item.category_id = ''
+      it "categoryが未選択だと出品できない" do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it "conditionが空だと出品できない" do
-        @item.condition_id = ''
+      it "conditionが未選択だと出品できない" do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
-      it "postage_payerが空だと出品できない" do
-        @item.postage_payer_id = ''
+      it "postage_payerが未選択だと出品できない" do
+        @item.postage_payer_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage payer can't be blank")
       end
-      it "prefectureが空だと出品できない" do
-        @item.prefecture_id = ''
+      it "prefectureが未選択だと出品できない" do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it "shipment_dateが空だと出品できない" do
-        @item.shipment_date_id = ''
+      it "shipment_dateが未選択だと出品できない" do
+        @item.shipment_date_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment date can't be blank")
       end
@@ -71,6 +71,11 @@ RSpec.describe Item, type: :model do
         @item.price = '１０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Out of setting range")
+      end
+      it "user_idが空だと出品できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
