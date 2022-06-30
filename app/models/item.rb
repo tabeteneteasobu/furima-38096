@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  #ActiveHash
+  # ActiveHash
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -7,13 +7,13 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shipment_date
 
-  #アソシエーション
+  # アソシエーション
   belongs_to :user
   has_one :order
 
   has_one_attached :image
 
-  #バリデーション
+  # バリデーション
   validates :item_name, presence: true
   validates :description, presence: true
   validates :category_id, presence: true
