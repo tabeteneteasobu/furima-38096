@@ -13,7 +13,12 @@ RSpec.describe OrderAddress, type: :model do
       it '全ての情報が存在すれば登録できる' do
         expect(@order_address).to be_valid
       end
+      it 'building_nameが空でも購入できる' do
+        @order_address.building_name = ""
+        expect(@order_address).to be_valid
+      end
     end
+
     context '商品購入できないとき' do
       it 'tokenが空では登録できない' do
         @order_address.token = nil
@@ -53,19 +58,24 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberがハイフンありでは登録できない' do
         @order_address.phone_number = '090-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid. Can't use hyphen(-)")
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
-      it 'order_idが空では登録できない' do
-        @order_address.order_id = nil
+      it '電話番号が9桁以下では登録できない' do
+        @order_address.phone_number = "090123456"
         @order_address.valid?
-        expect(@order_address.errors.full_messages)
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
-      it 'userが紐付いていないと保存できないこと' do
+      it '電話番号が12桁以上では登録できない' do
+        @order_address.phone_number = "090123456789"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'userが紐付いていないと保存できない' do
         @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
-      it 'itemが紐付いていないと保存できないこと' do
+      it 'itemが紐付いていないと保存できない' do
         @order_address.item_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Item can't be blank")
