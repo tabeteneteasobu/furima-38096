@@ -34,7 +34,9 @@
 
     <%# 購入ボタン %>
     <% if user_signed_in? && current_user.id != @item.user.id %>
+      <% unless @item.order.present? %>
       <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+      <% end %>
     <% end %>
 
     
