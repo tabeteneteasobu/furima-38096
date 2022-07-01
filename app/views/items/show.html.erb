@@ -24,20 +24,22 @@
     </div>
 
     <%# 編集・削除ボタン %>
-    <% if current_user.id == @item.user.id %>
-      <% unless @item.order.present? %>
-      <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+    <% if user_signed_in? %>
+      <% if current_user.id == @item.user.id %>
+        <% unless @item.order.present? %>
+        <%= link_to "商品の編集", edit_item_path, method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", item_path, method: :delete, class:"item-destroy" %>
+        <% end %>
       <% end %>
-    <% end %>
 
     <%# 購入ボタン %>
-    <% if user_signed_in? && current_user.id != @item.user.id %>
-      <% unless @item.order.present? %>
-      <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+      <% if current_user.id != @item.user.id %>
+        <% unless @item.order.present? %>
+        <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
-    <% end %>
+     <% end %>
 
     
 
