@@ -17,4 +17,19 @@ class User < ApplicationRecord
   has_many :items
   has_many :orders
   has_many :sns_credentials
+
+  #SNSログイン
+  def self.from_omniauth(auth)
+    sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
+    user = User.where(email: auth.info.email).first_or_initialize(
+      nickname: auth.info.name,
+        email: auth.info.email
+    )
+    # userが登録済みであるか判断
+   if user.persisted?
+    sns.user = user
+    sns.save
+  end
+  { user: user, sns: sns }
+  end
 end
