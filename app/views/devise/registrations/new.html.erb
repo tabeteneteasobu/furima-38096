@@ -1,8 +1,5 @@
 <%= render "shared/second-header"%>
 
-<%= link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method: :post%>
-<%= link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method: :post%>
-
 
 <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
@@ -14,6 +11,16 @@
 
     <%= render 'shared/error_messages', model: f.object %>
 
+  <div class="form-group">
+      <label class="form-text">SNSアカウントで登録</label>
+      <%= link_to "Googleで登録する", user_google_oauth2_omniauth_authorize_path, method: :post, class:"sns-login-g"%><br>
+      <%= link_to "Facebookで登録する", user_facebook_omniauth_authorize_path, method: :post, class:"sns-login-f" %>
+  </div>
+  <div class="or">
+  <br>
+  <label class="form-text">ーーーーーーーーー　OR　ーーーーーーーーー</label>
+  <br>
+  </div>
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">ニックネーム</label>

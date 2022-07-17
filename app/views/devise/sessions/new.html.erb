@@ -6,13 +6,20 @@
     <h1 class='form-header-text'>
       会員情報入力
     </h1>
-    <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post%>
-    <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post%>
-
   </div>
   <div class='login-flash-message'>
     <%= flash[:notice] %>
     <%= flash[:alert] %>
+  </div>
+  <div class="form-group">
+      <label class="form-text">SNSアカウントでログイン</label>
+      <%= link_to 'Googleでログインする', user_google_oauth2_omniauth_authorize_path, method: :post, class:"sns-login-g"%><br>
+      <%= link_to 'Facebookでログインする', user_facebook_omniauth_authorize_path, method: :post, class:"sns-login-f" %>
+  </div>
+  <div class="or">
+  <br>
+  <label class="form-text">ーーーーーーーーー　OR　ーーーーーーーーー</label>
+  <br>
   </div>
   <div class="form-group">
     <div class='form-text-wrap'>

@@ -1,3 +1,36 @@
+.sns-login-g {
+  color: #fff;
+  line-height: 48px;
+  border-radius: 5px ;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 7px;
+  border: 2px solid #ccc;
+  background: #ea4335;
+  font-size: 14px;
+  resize: none;
+  text-align: center;
+}
+
+.sns-login-f {
+  color: #fff;
+  line-height: 48px;
+  border-radius: 5px ;
+  width: 100%;
+  margin-top: 2px;
+  border-radius: 7px;
+  border: 2px solid #ccc;
+  background: #1877f2;
+  font-size: 14px;
+  resize: none;
+  text-align: center;
+}
+
+.or {
+  text-align: center;
+}
+
+
 .login-btn {
   width: 50%;
   margin: 0 auto;
